@@ -55,4 +55,4 @@
 
 更多精品文章，欢迎大家扫码关注「码海」
 
-![](https://user-gold-cdn.xitu.io/2019/12/29/16f51ecd24e85b62?w=1002&h=270&f=jpeg&s=59118)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/21e614235c1146af82cc8ec3ed1f5d26~tplv-k3u1fbpfcp-zoom-1.image)
