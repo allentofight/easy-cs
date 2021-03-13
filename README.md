@@ -72,6 +72,6 @@
 
 ![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/21e614235c1146af82cc8ec3ed1f5d26~tplv-k3u1fbpfcp-zoom-1.image)
 
-也欢迎大家扫一扫加我好友，拉你进学习交流群，里面有各位 BAT 大佬，可以提问，内推等，一起抱团取暖^_^
+也欢迎大家扫一扫加我好友（备注：github），拉你进学习交流群，里面有各位 BAT 大佬，可以提问，内推等，一起抱团取暖^_^
 
 ![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/56e1ace5f7a54065ae43b74febb5c189~tplv-k3u1fbpfcp-zoom-1.image)
