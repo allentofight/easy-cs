@@ -78,7 +78,7 @@
   
 更多精品文章，欢迎大家扫码关注「码海」
 
-![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/21e614235c1146af82cc8ec3ed1f5d26~tplv-k3u1fbpfcp-zoom-1.image)
+![](https://img-blog.csdnimg.cn/img_convert/d76cfc5e4491337809ee84e867ec0632.png)
 
 也欢迎大家扫一扫加我好友（备注：github），拉你进学习交流群，里面有各位 BAT 大佬，可以提问，内推等，一起抱团取暖^_^
 
