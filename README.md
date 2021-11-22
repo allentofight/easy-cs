@@ -54,6 +54,7 @@
   * [Netty 应用篇](Java/Netty应用篇.md)
   * [Sharding-JDBC 的基本用法和基本原理](Java/Sharding-JDBC的基本用法和基本原理.md)
   * [aop造火箭事件始末](Java/aop造火箭事件始末.md)
+  * [一个故事看懂对象的创建过程.md](Java/一个故事看懂对象的创建过程.md)
 
 * MySQL
   * [SQL 进阶使用技巧](MySQL/SQL进阶使用技巧.md)
