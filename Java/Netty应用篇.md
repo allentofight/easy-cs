@@ -1,5 +1,4 @@
-[TOC]
-
+@[toc]
 ## 前言
 
 本文是 Netty 三讲系列文章的最后一讲：Netty 应用篇。在前两篇文章中，第一篇介绍了 Netty 的架构（[点我查看第一篇文章](https://mp.weixin.qq.com/s/kUkw-RoqLEEr1xuv2ex0FQ)），第二篇对 Netty 关键源码进行了解析（[点我查看第二篇文章](https://mp.weixin.qq.com/s/F3uUqgEMxX3-sQPFHVFGow)），希望对大家理解 Netty 的工作原理有所帮助。Netty 的设计初衷就是为使用者提供更好的网络编程基础设施，因此在了解了 Netty 工作原理之后，本文向大家介绍使用 Netty 进行网络 IO 程序开发的一些关键问题，并给出一些 Demo。
@@ -8,7 +7,9 @@
 
 下面这张图在前两篇文章中均有讲解，本文再次贴出来。它明确显示了使用者基于 Netty 开发自己的网络 IO 程序的工作重点，那就是：定义自己的 Handler，放入 Pipeline，以处理 IO 事件。
 
-![157](https://gitee.com/guo_keyan2/pic_pic/raw/master/img/157.png)
+
+![](https://img-blog.csdnimg.cn/img_convert/8f157ac667a0d19d61191f7784b65ef1.png)
+
 
 这些 Handler 可以是编码器 Handler、可以是解码器 Handler，也可以是业务处理 Handler。并且多个 Handler 组成一个责任链，IO 事件会流经整个责任链。若 IO 事件是出站事件，则在责任链中的每个 OutboundHandler 中得到处理，若 IO 事件是入站事件，则在责任链中的每个 InboundHandler 中得到处理。
 
@@ -34,7 +35,9 @@ TCP 是面向连接的，面向字节流的，提供可靠性传输服务。收�
 
 4）Server 分两次读到了两个独立的数据包，分别是 pkg1 和 pkg2，其中 pkg1 包含了一部分 data1、pkg2 包含了另一部分 data1 和完整的 data2。也就是说 Client 上发生了拆包，Server 收到 pkg1 和 pkg2 后就要进行粘包处理。
 
-![156](https://gitee.com/guo_keyan2/pic_pic/raw/master/img/156.png)
+
+![](https://img-blog.csdnimg.cn/img_convert/06d0badea2cb4aa5e16b1bed741521f3.png)
+
 
 下面给出一个基于 Netty 的客户端服务器通信程序来验证这种现象的存在。
 
@@ -576,7 +579,9 @@ static class NettyClientHandler extends SimpleChannelInboundHandler<MyProtocolMe
 
 Netty 还提供了基于 OpenSSL 工具包的 OpenSslEngine 类，它比 JDK 提供的 SSLEngine 类有更好的性能。Netty 允许使用者进行配置，但无论是使用 JDK 的 SSLEngine 还是使用 Netty 的 OpenSslEngine，SSL API 和数据流都是一致的。下图展示了使用 SslHandler 的数据流。
 
-![167](https://gitee.com/guo_keyan2/pic_pic/raw/master/img/167.png)
+
+![](https://img-blog.csdnimg.cn/img_convert/7a5ad65174e8d29924e631bc225e486e.png)
+
 
 在大多数情况下，SslHandler 将是 ChannelPipeline 中的第一个 ChannelHandler。这确保了只有在所有其他的 ChannelHandler 将它们的逻辑应用到数据之后，才会进行加密。体现在代码上如下：
 
@@ -621,11 +626,15 @@ SslHandler 提供了一些有用的方法，如下表所示。
 
 在编写网络应用程序时，要考虑到数据在网络中都是以二进制字节码进行传输的，因此在发送数据前要对应用数据（业务数据）进行编码，在接收到数据时，要对数据进行解码。
 
-![159](https://gitee.com/guo_keyan2/pic_pic/raw/master/img/159.png)
+
+![](https://img-blog.csdnimg.cn/img_convert/cd4aa2f405c13faf803829d9b140c21b.png)
+
 
 Netty 对编解码也提供了支持，位于 io.netty.handler.codec 下面，包括编码器 Handler 和解码器 Handler。
 
-![158](https://gitee.com/guo_keyan2/pic_pic/raw/master/img/158.png)
+
+![](https://img-blog.csdnimg.cn/img_convert/c10bb5995094953dcf264d253cd5a11e.png)
+
 
 从源码包中包含的内容可以看出，Netty 提供的编码器和解码器对应用层的一些公私有协议进行了支持。例如：
 
@@ -647,11 +656,15 @@ HTTP/HTTPS 是基于请求/响应模式的：客户端向服务器发送一个 H
 
 在 Netty 中，Http 请求被抽象为 HttpRequest 对象+多个 HttpContent 对象+LastHttpContent 对象，如下图所示：
 
-![168](https://gitee.com/guo_keyan2/pic_pic/raw/master/img/168.png)
+
+![](https://img-blog.csdnimg.cn/img_convert/d2a8201e1a2e1875741144f7a13f43c1.png)
+
 
 同样，Http 响应被抽象为 HttpResponse 对象+多个 HttpContent 对象+LastHttpContent 对象，如下图所示：
 
-![169](https://gitee.com/guo_keyan2/pic_pic/raw/master/img/169.png)
+
+![](https://img-blog.csdnimg.cn/img_convert/1850091ba1f807b18fbdda838c0a9622.png)
+
 
 以上 HttpRequest、HttpResponse、HttpContent、LastHttpContent 类均继承于 HttpObject 类。
 
@@ -763,7 +776,9 @@ WebSocket 解决了一个长期存在的问题：既然底层的协议（HTTP）
 
 下给出了 WebSocket 协议的一般概念。在这个场景下，通信将以普通的 HTTP 协议开始，随后升级到双向的 WebSocket 协议。
 
-![170](https://gitee.com/guo_keyan2/pic_pic/raw/master/img/170.png)
+
+![](https://img-blog.csdnimg.cn/img_convert/f0fd153d421fbdefaa91779b3e76137c.png)
+
 
 由于应用层协议的原理不是本文的重点，本文不再对 websocket 做更深入的描述。
 
@@ -1019,7 +1034,9 @@ public class UdpDemoClient {
 
 Dubbo 是业界较为著名的 RPC 框架，Dubbo 在实现的时候采用了分层的架构，如下图示。Dubbo 在其 Transport 层使用了 Netty 来发送 Dubbo 协议消息。
 
-![161](https://gitee.com/guo_keyan2/pic_pic/raw/master/img/161.jpg)
+
+![](https://img-blog.csdnimg.cn/img_convert/426ff2ffddc455401a9c07244f678c57.png)
+
 
 为了帮助读者更好理解 RPC 的实现原理，以及 Dubbo 如何利用 Netty 实现应用数据传输的，本节给出一个综合性的案例：基于 Netty 实现一个简单的 RPC 过程。
 
@@ -1027,7 +1044,9 @@ Dubbo 是业界较为著名的 RPC 框架，Dubbo 在实现的时候采用了分
 
 远程过程调用（Remote Procedure Call），是指在分布式系统中，一个节点调用另外一个节点上的方法，就像调用本地方法一样。远程调用的实现原理如下图所示，其中调用者通常被称为 Consumer，被调用者通常被称为 Provider。
 
-![162](https://gitee.com/guo_keyan2/pic_pic/raw/master/img/162.png)
+
+![](https://img-blog.csdnimg.cn/img_convert/e8bac4e96d858374036305422874d8dc.png)
+
 
 在上图中：
 
@@ -1053,7 +1072,9 @@ Dubbo 是业界较为著名的 RPC 框架，Dubbo 在实现的时候采用了分
 
 ### 4.2. provider 端的代码
 
-![163](https://gitee.com/guo_keyan2/pic_pic/raw/master/img/163.png)
+
+![](https://img-blog.csdnimg.cn/img_convert/c7116e48774229fea48d0bec1f476a98.png)
+
 
 其中 HelloService.java 的代码为：
 
@@ -1201,7 +1222,9 @@ public class ServerBootstrap {
 
 ### 4.3. consumer 端的代码
 
-![163](https://gitee.com/guo_keyan2/pic_pic/raw/master/img/164.png)
+
+![](https://img-blog.csdnimg.cn/img_convert/88a7a86b9e77a55c680b0ac12fad5b72.png)
+
 
 其中 HelloService.java 的代码为：
 
@@ -1428,9 +1451,13 @@ public class ClientBootsrap {
 
 分别启动 Provider 和 Consumer，验证调用结果如下：
 
-![165](https://gitee.com/guo_keyan2/pic_pic/raw/master/img/165.png)
 
-![166](https://gitee.com/guo_keyan2/pic_pic/raw/master/img/166.png)
+![](https://img-blog.csdnimg.cn/img_convert/eaa27797e079acf5e4230b566c75e8ce.png)
+
+
+
+![](https://img-blog.csdnimg.cn/img_convert/c4acd091aa082d3880a1c60c57df1ea2.png)
+
 
 本节的 RPC 框架的实现要点为：
 
@@ -2336,7 +2363,7 @@ public class MyNtyServer {
 
 5）先后启动 Server 和 Client，可以看到服务器成功接收到了客户端发来的 Student 对象。
 
-![160](https://gitee.com/guo_keyan2/pic_pic/raw/master/img/160.png)
+![](https://img-blog.csdnimg.cn/img_convert/895e572ba285b2f37eeb132c07715e12.png)
 
 在本案例中，客户端和服务器均使用 Java 编写。实际上，只要双方使用的结构化对象 Student 均由 Student.proto 文件生成，使用任何语言实现客户端和服务器均可，这就是 Protobuf 的跨语言特性。
 
