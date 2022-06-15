@@ -163,7 +163,7 @@ HotSpot 虚拟机目前使用范围最广的 Java 虚拟机，据 R 大所述，
 
 
 
-我们就是研究 Linux 下的 JVM，为了便于说明，也方便大家查阅，我把其中关于信号处理的关键流程整理了下（忽略其中的次要代码）
+我们只研究 Linux 下的 JVM，为了便于说明，也方便大家查阅，我把其中关于信号处理的关键流程整理了下（忽略其中的次要代码）
 
 ![](https://tva1.sinaimg.cn/large/e6c9d24ely1h3857zb8u1j20rc0enq4l.jpg)
 
@@ -233,7 +233,7 @@ JVM_handle_linux_signal(int sig,
 
 从以上代码我们可以知道以下信息
 
-1. 发生 stackoverflow 还有空指针错误，确实都发送了 SIGSEGV，只是虚拟机不选择退出，而是自己内部作了额外的处理，其实是恢复了线程的进程，并抛出 StackoverflowError 和 NPE，这就是为什么 JVM 不会崩溃且我们能捕获这两个错误/异常的原因
+1. 发生 stackoverflow 还有空指针错误，确实都发送了 SIGSEGV，只是虚拟机不选择退出，而是自己内部作了额外的处理，其实是恢复了线程的执行，并抛出 StackoverflowError 和 NPE，这就是为什么 JVM 不会崩溃且我们能捕获这两个错误/异常的原因
 
 2. 如果针对 SIGSEGV 等信号，在以上的函数中 JVM 没有做额外的处理，那么最终会走到 report_and_die 这个方法，这个方法主要做的事情是生成 hs_err_pid_xxx.log crash 文件（记录了一些堆栈信息或错误），然后退出
 
@@ -254,3 +254,9 @@ JVM_handle_linux_signal(int sig,
 Segmentation Fault in Linux： https://www.cnblogs.com/kaixin/archive/2010/06/07/1753133.html
 
 linux SIGSEGV 信号捕捉，保证发生段错误后程序不崩溃: https://blog.csdn.net/work_msh/article/details/8470277
+
+
+
+更多精品文章，欢迎大家扫码关注「码海」
+
+![](https://img-blog.csdnimg.cn/img_convert/d76cfc5e4491337809ee84e867ec0632.png)
