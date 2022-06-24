@@ -159,7 +159,7 @@ int main(void) {
 
 ### openJDK 源码解析
 
-HotSpot 虚拟机目前使用范围最广的 Java 虚拟机，据 R 大所述， Oracle JDK 与 OpenJDK 里的 JVM 都是 HotSpot VM，从源码层面说，两者基本上是同一个东西，OpenJDK 是开源的，所以我们主要研究下 Java 8 的 OpenJDK 即可，地址如下：https://github.com/AdoptOpenJDK/openjdk-jdk8u，有兴趣的可以下载来看看
+HotSpot 虚拟机是目前使用范围最广的 Java 虚拟机，据 R 大所述， Oracle JDK 与 OpenJDK 里的 JVM 都是 HotSpot VM，从源码层面说，两者基本上是同一个东西，OpenJDK 是开源的，所以我们主要研究下 Java 8 的 OpenJDK 即可，地址如下：https://github.com/AdoptOpenJDK/openjdk-jdk8u，有兴趣的可以下载来看看
 
 
 
