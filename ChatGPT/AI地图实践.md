@@ -187,4 +187,4 @@ AI 时代已至！在工作中我大量使用 ChatGPT 来提升工作效率，�
 
 
 
-我建了一个 ![AI 导航网站](https://ainavtech.com/)，欢迎大家体验
+我建了一个 [AI 导航网站](https://ainavtech.com/)，欢迎大家体验
